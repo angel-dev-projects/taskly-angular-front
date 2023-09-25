@@ -1,0 +1,23 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+@font-face {
+  font-family: 'Abel';
+  src: url('assets/fonts/Abel-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Abel', sans-serif !important;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #1ab189c0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
