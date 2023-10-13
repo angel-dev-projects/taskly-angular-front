@@ -2,7 +2,7 @@
   border-radius: 4px;
   background-color: #ffffff;
   position: fixed;
-  z-index: 100;
+  z-index: 2000;
   bottom: 24px;
   right: 40px;
   min-width: 250px;

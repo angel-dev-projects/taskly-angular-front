@@ -15,6 +15,8 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { SpinnerModule } from './shared/spinner/spinner.module';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { ToastComponent } from './shared/toast/toast.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { EventComponent } from './views/event/event.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { ToastComponent } from './shared/toast/toast.component';
     AuthenticationComponent,
     ProfileComponent,
     ToastComponent,
+    EventComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { ToastComponent } from './shared/toast/toast.component';
     HttpClientModule,
     BrowserAnimationsModule,
     SpinnerModule,
+    FullCalendarModule,
   ],
   providers: [
     AuthGuard,

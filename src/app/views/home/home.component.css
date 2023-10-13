@@ -1,0 +1,15 @@
+i {
+  font-size: 3rem;
+  color: #1ab188;
+  cursor: pointer;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  z-index: 200;
+  transition: transform 0.2s ease-in-out;
+}
+
+i:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,93 @@
+<div class="py-5 background">
+    <form (submit)="saveEvent()" [formGroup]="eventForm" class="bg-dark rounded">
+        <h1>{{h1Text | uppercase}} EVENT</h1>
+        <div class="mb-3">
+            <div class="d-flex justify-content-between">
+                <label for="title">Title:</label>
+                <div class="character-count">{{titleCharacterCount}}/30</div>
+            </div>
+            <input type="text" id="title" name="title" formControlName="title" (input)="updateCharacterCount()"
+                maxlength="30">
+            <div class="text-warning"
+                *ngIf="eventForm.get('title')?.hasError('required') && eventForm.get('title')?.touched">
+                <span>Enter a title</span>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="d-flex justify-content-between">
+                <label for="description">Description:</label>
+                <div class="character-count">{{descriptionCharacterCount}}/200</div>
+            </div>
+            <textarea type="text" id="description" name="description" formControlName="description" rows="3"
+                (input)="updateCharacterCount()" maxlength="200"></textarea>
+            <div class="text-warning"
+                *ngIf="eventForm.get('description')?.hasError('required') && eventForm.get('description')?.touched">
+                <span>Enter a description</span>
+            </div>
+        </div>
+
+        <hr>
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" role="switch" type="checkbox" id="allDay" name="allDay"
+                formControlName="allDay">
+            <label class="form-check-label" for="allDay">
+                All Day?
+            </label>
+        </div>
+        <div class="flex-container mb-3">
+            <div [ngClass]="{'flex-3': !eventForm.get('allDay')?.value, 'flex-2': eventForm.get('allDay')?.value}">
+                <label for="startDate">Start Date:</label>
+                <br>
+                <input type="date" id="startDate" name="startDate" formControlName="startDate">
+                <div class="text-warning"
+                    *ngIf="eventForm.get('startDate')?.hasError('required') && eventForm.get('startDate')?.touched">
+                    <span>Enter the start date</span>
+                </div>
+            </div>
+            <div class="flex-1" *ngIf="!eventForm.get('allDay')?.value">
+                <label for="startTime">Start Time:</label>
+                <br>
+                <input type="time" id="startTime" name="startTime" formControlName="startTime">
+            </div>
+        </div>
+        <div class="flex-container mb-3">
+            <div [ngClass]="{'flex-3': !eventForm.get('allDay')?.value, 'flex-2': eventForm.get('allDay')?.value}">
+                <label for="endDate">End Date:</label>
+                <br>
+                <input type="date" id="endDate" name="endDate" formControlName="endDate">
+                <div class="text-warning"
+                    *ngIf="eventForm.get('endDate')?.hasError('required') && eventForm.get('endDate')?.touched">
+                    <span>Enter the end date</span>
+                </div>
+            </div>
+            <div class="flex-1" *ngIf="!eventForm.get('allDay')?.value">
+                <label for="endTime">End Time:</label>
+                <br>
+                <input type="time" id="endTime" name="endTime" formControlName="endTime">
+            </div>
+        </div>
+        <hr>
+        <div class="mb-3 d-flex align-items-center gap-2">
+            <input type="color" class="input-color" id="backgroundColor" name="backgroundColor"
+                formControlName="backgroundColor">
+            <label for="backgroundColor">Background Color</label>
+        </div>
+        <div class="mb-3 d-flex align-items-center gap-2">
+            <input type="color" class="input-color" id="borderColor" name="borderColor" formControlName="borderColor">
+            <label for="borderColor">Border Color</label>
+        </div>
+        <div class="mb-3 d-flex align-items-center gap-2">
+            <input type="color" class="input-color" id="textColor" name="textColor" formControlName="textColor">
+            <label for="textColor">Text Color</label>
+        </div>
+        <div class="flex-container">
+            <div [ngClass]="{'flex-3': !eventId, 'flex-2': eventId}">
+                <button type="submit" [disabled]="eventForm.invalid">SAVE</button>
+            </div>
+            <div class="flex-1" *ngIf="eventId">
+                <button type="button" (click)="deleteEvent()"><i class="bi bi-trash3"></i></button>
+            </div>
+        </div>
+    </form>
+</div>

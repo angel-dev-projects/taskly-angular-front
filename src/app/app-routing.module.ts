@@ -4,6 +4,7 @@ import { HomeComponent } from './views/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { EventComponent } from './views/event/event.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,16 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-event/:id',
+    component: EventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-event',
+    component: EventComponent,
     canActivate: [AuthGuard],
   },
   {

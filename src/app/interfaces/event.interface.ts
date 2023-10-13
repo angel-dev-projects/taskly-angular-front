@@ -1,8 +1,11 @@
 export interface Event {
-  _id?: string;
-  title: string;
-  description: string;
-  date: Date;
-  hour: Date;
-  color: string;
+  id?: string;
+  title?: string;
+  description?: string;
+  start?: string;
+  end?: string;
+  allDay?: boolean;
+  backgroundColor?: string;
+  borderColor?: string;
+  textColor?: string;
 }

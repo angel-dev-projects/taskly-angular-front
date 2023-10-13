@@ -1,0 +1,88 @@
+.background {
+  background-color: #1ab188;
+}
+
+h1 {
+  font-weight: 700;
+  text-align: center;
+}
+
+form {
+  padding: 40px;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  color: white;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  font-size: 1.2rem;
+  width: 100%;
+  padding: 5px 10px;
+  background: none;
+  border: 1px solid #a0b3b0;
+  color: #ffffff;
+  border-radius: 0;
+  transition: border-color .25s ease;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  outline: 0;
+  border-color: #1ab188;
+}
+
+button {
+  border: 0;
+  outline: none;
+  border-radius: 0;
+  padding: 15px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  background: #1ab188;
+  color: #ffffff;
+  transition: all.5s ease;
+  width: 100%;
+}
+
+button:hover,
+button:focus {
+  background: #117963;
+}
+
+.input-color {
+  padding: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 1px solid #a0b3b0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.character-count {
+  color: #a0a0a0;
+}
