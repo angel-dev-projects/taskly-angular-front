@@ -17,6 +17,8 @@ import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { ToastComponent } from './shared/toast/toast.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EventComponent } from './views/event/event.component';
+import { ListContactsComponent } from './views/list-contacts/list-contacts.component';
+import { ContactComponent } from './views/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { EventComponent } from './views/event/event.component';
     ProfileComponent,
     ToastComponent,
     EventComponent,
+    ListContactsComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

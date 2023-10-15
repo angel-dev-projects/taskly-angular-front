@@ -4,17 +4,10 @@
         <img src="assets/imgs/taskly-logo.png" alt="Taskly Logo" height="60">
         <h1 class="m-0 mx-3">Taskly</h1>
     </a>
-    <div class="dropdown">
-        <a href="#" class="d-block link-dark text-decoration-none text-white" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <i class="bi bi-list"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
-            <li>
-                <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" style="cursor: pointer;" (click)="authService.logOut()">Log Out</a></li>
-        </ul>
+    <div class="d-flex gap-5 text-white">
+        <i class="bi bi-calendar2-event" routerLink="/home"></i>
+        <i class="bi bi-people" routerLink="/contacts"></i>
+        <i class="bi bi-gear" routerLink="/profile"></i>
+        <i class="bi bi-box-arrow-right" (click)="authService.logOut()"></i>
     </div>
 </header>

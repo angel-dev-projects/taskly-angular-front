@@ -1,0 +1,47 @@
+.background {
+  background-color: #1ab188;
+}
+
+.create-contact {
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.create-contact:hover {
+  transform: scale(1.1);
+}
+
+h1 {
+  font-weight: 700;
+  text-align: center;
+}
+
+.contacts-list {
+  padding: 40px;
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  color: white;
+}
+
+.contact-first-letter {
+  font-size: 1.5rem;
+  background-color: #1ab188;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact {
+  cursor: pointer;
+  font-size: 1.3rem;
+}
+
+.contact:hover {
+  background-color: #505050b1;
+}

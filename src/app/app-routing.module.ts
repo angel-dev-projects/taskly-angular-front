@@ -5,6 +5,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
 import { ProfileComponent } from './views/profile/profile.component';
 import { EventComponent } from './views/event/event.component';
+import { ListContactsComponent } from './views/list-contacts/list-contacts.component';
+import { ContactComponent } from './views/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,21 @@ const routes: Routes = [
   {
     path: 'new-event',
     component: EventComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'contacts',
+    component: ListContactsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-contact/:id',
+    component: ContactComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'new-contact',
+    component: ContactComponent,
     canActivate: [AuthGuard],
   },
   {
