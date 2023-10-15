@@ -101,7 +101,9 @@ export class HomeComponent implements OnInit {
 
   handleEventResize(eventInfo: any) {
     const updatedEvent: Event = {
+      start: eventInfo.event.start,
       end: eventInfo.event.end,
+      allDay: eventInfo.event.allDay,
     };
 
     this.eventService.updateEvent(updatedEvent, eventInfo.event.id).subscribe(

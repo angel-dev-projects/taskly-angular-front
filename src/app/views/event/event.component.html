@@ -21,10 +21,6 @@
             </div>
             <textarea type="text" id="description" name="description" formControlName="description" rows="3"
                 (input)="updateCharacterCount()" maxlength="200"></textarea>
-            <div class="text-warning"
-                *ngIf="eventForm.get('description')?.hasError('required') && eventForm.get('description')?.touched">
-                <span>Enter a description</span>
-            </div>
         </div>
 
         <hr>

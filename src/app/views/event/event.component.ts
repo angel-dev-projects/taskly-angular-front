@@ -30,7 +30,7 @@ export class EventComponent implements OnInit {
 
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
       startDate: [moment(new Date()).format('YYYY-MM-DD'), Validators.required],
       startTime: [moment(new Date()).format('HH:mm')],
       endDate: [moment(new Date()).format('YYYY-MM-DD'), Validators.required],
@@ -107,8 +107,6 @@ export class EventComponent implements OnInit {
       borderColor: this.eventForm.value.borderColor,
       textColor: this.eventForm.value.textColor,
     };
-
-    console.log(event);
 
     if (this.eventId !== null) {
       this.eventService.updateEvent(event, this.eventId).subscribe(
