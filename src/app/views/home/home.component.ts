@@ -56,8 +56,8 @@ export class HomeComponent implements OnInit {
         this.events = eventsObtained.map((event: Event) => ({
           id: event.id,
           title: event.title,
-          start: event.start,
-          end: event.end,
+          start: event.start_date,
+          end: event.end_date,
           allDay: event.allDay,
           backgroundColor: event.backgroundColor,
           borderColor: event.borderColor,
@@ -76,8 +76,8 @@ export class HomeComponent implements OnInit {
 
   handleEventDrop(eventInfo: any) {
     const updatedEvent: Event = {
-      start: eventInfo.event.start,
-      end: eventInfo.event.end,
+      start_date: eventInfo.event.start,
+      end_date: eventInfo.event.end,
       allDay: eventInfo.event.allDay,
     };
 
@@ -101,8 +101,8 @@ export class HomeComponent implements OnInit {
 
   handleEventResize(eventInfo: any) {
     const updatedEvent: Event = {
-      start: eventInfo.event.start,
-      end: eventInfo.event.end,
+      start_date: eventInfo.event.start,
+      end_date: eventInfo.event.end,
       allDay: eventInfo.event.allDay,
     };
 
