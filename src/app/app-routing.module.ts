@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
-import { ProfileComponent } from './views/profile/profile.component';
 import { EventComponent } from './views/event/event.component';
 import { ListContactsComponent } from './views/list-contacts/list-contacts.component';
 import { ContactComponent } from './views/contact/contact.component';
@@ -12,11 +11,6 @@ const routes: Routes = [
   {
     path: 'auth',
     component: AuthenticationComponent,
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'home',

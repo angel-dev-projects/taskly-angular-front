@@ -11,7 +11,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 import { HomeComponent } from './views/home/home.component';
 import { AuthenticationComponent } from './views/authentication/authentication.component';
-import { ProfileComponent } from './views/profile/profile.component';
 import { SpinnerModule } from './shared/spinner/spinner.module';
 import { SpinnerInterceptor } from './interceptors/spinner.interceptor';
 import { ToastComponent } from './shared/toast/toast.component';
@@ -27,7 +26,6 @@ import { ContactComponent } from './views/contact/contact.component';
     FooterComponent,
     HomeComponent,
     AuthenticationComponent,
-    ProfileComponent,
     ToastComponent,
     EventComponent,
     ListContactsComponent,
