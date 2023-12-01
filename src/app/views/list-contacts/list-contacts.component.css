@@ -2,14 +2,14 @@
   background-color: #1ab188;
 }
 
-.create-contact {
+.contact-option {
   font-size: 1.3rem;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   width: fit-content;
 }
 
-.create-contact:hover {
+.contact-option:hover {
   transform: scale(1.1);
 }
 

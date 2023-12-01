@@ -1,15 +1,54 @@
 <div class="py-5 background min-vh-100">
-    <div class="contacts-list bg-dark rounded">
-        <h1>YOUR CONTACTS</h1>
-        <div class="mb-2 p-2 fw-bold create-contact" style="color: #1ab188;" routerLink="/new-contact">
-            <i class="bi bi-person-plus"></i> Create new contact
-        </div>
-        <div *ngFor="let contact of contacts; let i = index" routerLink="/edit-contact/{{contact.id}}">
-            <div class="contact d-flex align-items-center gap-2 rounded p-1 w-100">
-                <div class="contact-first-letter text-dark">{{contact.name[0] | uppercase}}</div>
-                <div class="text-truncate">{{contact.name}} {{contact.surname}}</div>
-            </div>
-            <hr *ngIf="i < contacts.length - 1 && contacts[i].name[0] !== contacts[i + 1].name[0]">
-        </div>
+  <div class="contacts-list bg-dark rounded">
+    <h1>YOUR CONTACTS</h1>
+
+    <div class="d-flex justify-content-between">
+      <div
+        class="mb-2 p-2 fw-bold contact-option"
+        style="color: #1ab188"
+        routerLink="/new-contact"
+      >
+        <i class="bi bi-person-plus"></i> Create new contact
+      </div>
+      <button
+        class="btn text-white contact-option"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#searchCollapse"
+        aria-expanded="false"
+        aria-controls="searchCollapse"
+      >
+        <i class="bi bi-search"></i>
+      </button>
     </div>
+
+    <input
+      type="text"
+      class="form-control mb-4 p-2 collapse collapse-horizontal"
+      id="searchCollapse"
+      placeholder="Search contacts"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="filterContacts()"
+    />
+
+    <div
+      *ngFor="let contact of filteredContacts; let i = index"
+      routerLink="/edit-contact/{{ contact.id }}"
+    >
+      <div class="contact d-flex align-items-center gap-2 rounded p-1 w-100">
+        <div class="contact-first-letter text-dark">
+          {{ contact.name[0] | uppercase }}
+        </div>
+        <div class="text-truncate">
+          {{ contact.name }} {{ contact.surname }}
+        </div>
+      </div>
+      <hr
+        *ngIf="
+          i < filteredContacts.length - 1 &&
+          filteredContacts[i].name[0] !== filteredContacts[i + 1].name[0]
+        "
+      />
+    </div>
+  </div>
 </div>
