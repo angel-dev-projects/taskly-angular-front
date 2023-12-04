@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from 'src/app/services/event.service';
-import * as moment from 'moment';
+import { format } from 'date-fns'; 
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
@@ -26,15 +26,15 @@ export class EventComponent implements OnInit {
     private toastService: ToastService,
     private router: Router
   ) {
-    this.eventId = this.activatedRoute.snapshot.paramMap.get('id'); // Get the event ID from the URL
+    this.eventId = this.activatedRoute.snapshot.paramMap.get('id');
 
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
       description: [''],
-      startDate: [moment(new Date()).format('YYYY-MM-DD'), Validators.required],
-      startTime: [moment(new Date()).format('HH:mm')],
-      endDate: [moment(new Date()).format('YYYY-MM-DD'), Validators.required],
-      endTime: [moment(new Date()).format('HH:mm')],
+      startDate: [format(new Date(), 'yyyy-MM-dd'), Validators.required],  // Utiliza date-fns en lugar de moment
+      startTime: [format(new Date(), 'HH:mm')],
+      endDate: [format(new Date(), 'yyyy-MM-dd'), Validators.required],  // Utiliza date-fns en lugar de moment
+      endTime: [format(new Date(), 'HH:mm')],
       allDay: [false],
       backgroundColor: ['#0000FF', Validators.required],
       borderColor: ['#ff1414', Validators.required],
@@ -43,7 +43,7 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isEdit(); // Check if the component is in edit mode and populate event details if necessary
+    this.isEdit();
 
     this.eventForm.get('title').valueChanges.subscribe(() => {
       this.updateCharacterCount();
@@ -54,21 +54,18 @@ export class EventComponent implements OnInit {
     });
   }
 
-  // Function to check if the component is in edit mode and fetch event details if necessary
   isEdit() {
     if (this.eventId !== null) {
       this.h1Text = 'update';
-      // Get the details of the event with the provided ID
       this.eventService.getEventById(this.eventId).subscribe(
         (event) => {
-          // Populate the component properties with the event details
           this.eventForm.setValue({
             title: event.title,
             description: event.description,
-            startDate: moment(event.start_date).format('YYYY-MM-DD'),
-            startTime: moment(event.start_date).format('HH:mm'),
-            endDate: moment(event.end_date).format('YYYY-MM-DD'),
-            endTime: moment(event.end_date).format('HH:mm'),
+            startDate: format(new Date(event.start_date), 'yyyy-MM-dd'),  // Formatea la fecha al asignarla al formulario
+            startTime: format(new Date(event.start_date), 'HH:mm'),
+            endDate: format(new Date(event.end_date), 'yyyy-MM-dd'),  // Formatea la fecha al asignarla al formulario
+            endTime: format(new Date(event.end_date), 'HH:mm'),
             allDay: event.allDay,
             backgroundColor: event.backgroundColor,
             borderColor: event.borderColor,
@@ -84,6 +81,7 @@ export class EventComponent implements OnInit {
       this.h1Text = 'create';
     }
   }
+  
 
   saveEvent() {
     const startDateTime = this.combineDateAndTime(
@@ -178,13 +176,11 @@ export class EventComponent implements OnInit {
     });
   }
 
-  // Function to combine date and time
   combineDateAndTime(date: string, time: string, allDay: boolean) {
-    if (allDay) {
-      return moment(`${date}T${`00:00`}`).format('YYYY-MM-DDTHH:mm');
-    }
-    return moment(`${date}T${time}`).format('YYYY-MM-DDTHH:mm');
+    const dateTimeString = allDay ? `${date}T00:00` : `${date}T${time}`;
+    return format(new Date(dateTimeString), 'yyyy-MM-dd HH:mm');
   }
+  
 
   updateCharacterCount() {
     this.titleCharacterCount = this.eventForm.get('title').value.length;
