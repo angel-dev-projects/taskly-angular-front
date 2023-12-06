@@ -1,7 +1,6 @@
 // Import necessary modules and services
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { ContactService } from 'src/app/services/contact.service';
@@ -132,37 +131,26 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  // Delete the contact after confirmation
+  // Delete the contact
   deleteContact() {
-    Swal.fire({
-      title: 'Delete contact',
-      text: 'Are you sure you want to delete this contact?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Confirm',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.contactService.deleteContact(this.contactId).subscribe(
-          // Success callback
-          (res) => {
-            console.log(res);
-            this.router.navigate(['/contacts']);
-            this.toastService.initiate({
-              title: 'Contact Deleted',
-              content: 'The contact was deleted successfully',
-            });
-          },
-          // Error callback
-          (err) => {
-            console.error(err);
-            this.toastService.initiate({
-              title: 'Error',
-              content: err.error.message,
-            });
-          }
-        );
+    this.contactService.deleteContact(this.contactId).subscribe(
+      // Success callback
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/contacts']);
+        this.toastService.initiate({
+          title: 'Contact Deleted',
+          content: 'The contact was deleted successfully',
+        });
+      },
+      // Error callback
+      (err) => {
+        console.error(err);
+        this.toastService.initiate({
+          title: 'Error',
+          content: err.error.message,
+        });
       }
-    });
+    );
   }
 }

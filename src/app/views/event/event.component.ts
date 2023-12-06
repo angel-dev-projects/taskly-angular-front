@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from 'src/app/services/event.service';
 import { format } from 'date-fns';
-import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'src/app/services/toast.service';
 import { Event } from 'src/app/interfaces/event.interface';
@@ -173,38 +172,27 @@ export class EventComponent implements OnInit {
     }
   }
 
-  // Delete the event after confirmation
+  // Delete the event
   deleteEvent() {
-    Swal.fire({
-      title: 'Delete event',
-      text: 'Are you sure you want to delete this event?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Confirm',
-      cancelButtonText: 'Cancel',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.eventService.deleteEvent(this.eventId).subscribe(
-          // Success callback
-          (res) => {
-            console.log(res);
-            this.router.navigate(['/home']);
-            this.toastService.initiate({
-              title: 'Event Deleted',
-              content: 'The event was deleted successfully',
-            });
-          },
-          // Error callback
-          (err) => {
-            console.error(err);
-            this.toastService.initiate({
-              title: 'Error',
-              content: err.error.message,
-            });
-          }
-        );
+    this.eventService.deleteEvent(this.eventId).subscribe(
+      // Success callback
+      (res) => {
+        console.log(res);
+        this.router.navigate(['/home']);
+        this.toastService.initiate({
+          title: 'Event Deleted',
+          content: 'The event was deleted successfully',
+        });
+      },
+      // Error callback
+      (err) => {
+        console.error(err);
+        this.toastService.initiate({
+          title: 'Error',
+          content: err.error.message,
+        });
       }
-    });
+    );
   }
 
   // Combine date and time into a formatted date-time string
