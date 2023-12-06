@@ -1,3 +1,4 @@
+// Import necessary modules and services
 import { Component, ElementRef, Renderer2, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -12,10 +13,16 @@ import { of } from 'rxjs';
   styleUrls: ['./authentication.component.css'],
 })
 export class AuthenticationComponent implements OnInit {
+  // Form group for login
   loginForm: FormGroup;
+
+  // Form group for user registration
   registerForm: FormGroup;
 
   constructor(
+    // Inject ElementRef and Renderer2 for DOM manipulation,
+    // AuthService for authentication, Router for navigation,
+    // FormBuilder for building forms, and ToastService for displaying notifications
     private el: ElementRef,
     private renderer: Renderer2,
     private authService: AuthService,
@@ -40,10 +47,17 @@ export class AuthenticationComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Set up event listeners for form inputs and tabs
+    this.setupEventListeners();
+  }
+
+  // Function to set up event listeners for form inputs and tabs
+  setupEventListeners() {
     const formInputs = this.el.nativeElement.querySelectorAll('.form input');
     const tabLinks = this.el.nativeElement.querySelectorAll('.tab a');
 
     formInputs.forEach((input: any) => {
+      // Event listener for keyup on input fields
       this.renderer.listen(input, 'keyup', (e) => {
         const $this = e.target;
         const label = $this.previousElementSibling;
@@ -59,6 +73,7 @@ export class AuthenticationComponent implements OnInit {
         }
       });
 
+      // Event listener for blur on input fields
       this.renderer.listen(input, 'blur', (e) => {
         const $this = e.target;
         const label = $this.previousElementSibling;
@@ -70,6 +85,7 @@ export class AuthenticationComponent implements OnInit {
         }
       });
 
+      // Event listener for focus on input fields
       this.renderer.listen(input, 'focus', (e) => {
         const $this = e.target;
         const label = $this.previousElementSibling;
@@ -83,6 +99,7 @@ export class AuthenticationComponent implements OnInit {
     });
 
     tabLinks.forEach((link: any) => {
+      // Event listener for click on tab links
       this.renderer.listen(link, 'click', (e) => {
         e.preventDefault();
 
@@ -91,6 +108,7 @@ export class AuthenticationComponent implements OnInit {
         const tabs = this.el.nativeElement.querySelectorAll('.tab');
         const target = $this.getAttribute('href').substring(1);
 
+        // Activate the clicked tab and deactivate others
         tab.classList.add('active');
         tabs.forEach((t: { classList: { remove: (arg0: string) => void } }) => {
           if (t !== tab) {
@@ -100,6 +118,7 @@ export class AuthenticationComponent implements OnInit {
 
         const tabContents =
           this.el.nativeElement.querySelectorAll('.tab-content > div');
+        // Show the content of the clicked tab and hide others
         tabContents.forEach((content: { id: any }) => {
           if (content.id !== target) {
             this.renderer.setStyle(content, 'display', 'none');
@@ -111,8 +130,8 @@ export class AuthenticationComponent implements OnInit {
     });
   }
 
+  // Function to handle user registration
   register() {
-    // Call the register method of the authentication service to register the user
     this.authService
       .register(this.registerForm.value)
       .pipe(
@@ -134,8 +153,8 @@ export class AuthenticationComponent implements OnInit {
       .subscribe();
   }
 
+  // Function to handle user login
   logIn() {
-    // Perform the login using the authentication service
     this.authService
       .logIn(this.loginForm.value)
       .pipe(
