@@ -4,8 +4,6 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/services/toast.service';
-import { catchError, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-authentication',
@@ -132,47 +130,39 @@ export class AuthenticationComponent implements OnInit {
 
   // Function to handle user registration
   register() {
-    this.authService
-      .register(this.registerForm.value)
-      .pipe(
-        switchMap((res) => {
-          // Store the access token in local storage
-          localStorage.setItem('token', res.token);
-          // Redirect to the 'home' component
-          return this.router.navigate(['/home']);
-        }),
-        catchError((err) => {
-          console.log(err);
-          this.toastService.initiate({
-            title: 'Error',
-            content: err.error.message,
-          });
-          return of(null);
-        })
-      )
-      .subscribe();
+    this.authService.register(this.registerForm.value).subscribe(
+      (res) => {
+        // Store the access token in local storage
+        localStorage.setItem('token', res.token);
+        // Redirect to the 'home' component
+        return this.router.navigate(['/home']);
+      },
+      (err) => {
+        console.log(err);
+        this.toastService.initiate({
+          title: 'Error',
+          content: err.error.message,
+        });
+      }
+    );
   }
 
   // Function to handle user login
   logIn() {
-    this.authService
-      .logIn(this.loginForm.value)
-      .pipe(
-        switchMap((res) => {
-          // Store the access token in local storage
-          localStorage.setItem('token', res.token);
-          // Redirect to the 'home' component
-          return this.router.navigate(['/home']);
-        }),
-        catchError((err) => {
-          console.log(err);
-          this.toastService.initiate({
-            title: 'Error',
-            content: err.error.message,
-          });
-          return of(null);
-        })
-      )
-      .subscribe();
+    this.authService.logIn(this.loginForm.value).subscribe(
+      (res) => {
+        // Store the access token in local storage
+        localStorage.setItem('token', res.token);
+        // Redirect to the 'home' component
+        return this.router.navigate(['/home']);
+      },
+      (err) => {
+        console.log(err);
+        this.toastService.initiate({
+          title: 'Error',
+          content: err.error.message,
+        });
+      }
+    );
   }
 }

@@ -93,7 +93,7 @@ export class HomeComponent implements OnInit {
     // Prepare the updated event data
     const updatedEvent: Event = {
       start_date: eventInfo.event.start,
-      end_date: eventInfo.event.end,
+      end_date: eventInfo.event.end !== null ? eventInfo.event.end : eventInfo.event.start,
       allDay: eventInfo.event.allDay,
     };
 
