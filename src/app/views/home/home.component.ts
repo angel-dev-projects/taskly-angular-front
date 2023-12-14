@@ -7,7 +7,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 import listPlugin from '@fullcalendar/list';
 import { ToastService } from 'src/app/services/toast.service';
 import { Event } from 'src/app/interfaces/event.interface';
-import { FullCalendarComponent } from '@fullcalendar/angular';
 import { CalendarOptions } from '@fullcalendar/core';
 import { Router } from '@angular/router';
 
@@ -17,9 +16,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  // Reference to the FullCalendar component
-  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
-
   // Array to store events retrieved from the backend
   events: any[] = [];
 
