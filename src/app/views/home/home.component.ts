@@ -1,10 +1,9 @@
 // Import necessary modules and services
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
 import { ToastService } from 'src/app/services/toast.service';
 import { Event } from 'src/app/interfaces/event.interface';
 import { CalendarOptions } from '@fullcalendar/core';
@@ -35,7 +34,7 @@ export class HomeComponent implements OnInit {
 
     // Configure FullCalendar options
     this.options = {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, listPlugin],
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       navLinks: true,
       editable: true,
       selectMirror: true,
@@ -46,7 +45,7 @@ export class HomeComponent implements OnInit {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       eventTimeFormat: {
         hour: '2-digit',
