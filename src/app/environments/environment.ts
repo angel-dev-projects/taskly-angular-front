@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://taskly-spring-api.onrender.com/v0/',
+  apiUrl: 'http://localhost:8080/api/v0/',
 };
